@@ -1,0 +1,48 @@
+{% extends "base.html" %}{% block content %}{% load static %}
+<section class="content">
+    <header>
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+        <div class="logodiv">
+        <img src="{% static 'img/social-media-twitter-logo-blue-isolated-free-vector.jpeg' %}" alt="logo" class="twitterlogo">
+
+        <h1 class = "edit-title">Edit</h1>
+        </div>
+    </header>
+
+    <section class="post_form-edit">
+        <div class = "Edit-h">
+            <div class="user-logo-div">
+                <img src="{% static 'img/add-user.png' %}" class="user-logo" />
+            </div> 
+            <form action="/edit/{{post.id}}/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+               <div class = "content-box">
+                <input type="text" name="name" placeholder="Name" value="{{post.name}}" required/>
+                <input type="text" name="body" value="{{ post.body }}">
+               </div>
+               {% if post.image.url %}
+
+                <img src="{{post.image.url}}" class ="edit-image" >
+
+                {% endif %}
+                <div class="butns" >
+                    <input id="uploadfile" type="file" value="Choose File" name="image" /><br>
+                    <button  class="edit-btn"><a class="edit-a" href="/" type="submit">Cancel</a></button>
+                    <button  class="edit-btn" type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+               
+
+            
+             
+
+            
+                
+
+            
+
+    </section>
+
+</section>
+{% endblock %}
